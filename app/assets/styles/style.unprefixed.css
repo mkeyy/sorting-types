@@ -1,0 +1,56 @@
+/* 1. Abstracts */
+
+/* colors */
+
+/* fonts */
+
+/*
+  Event wrapper
+  @author Harry Roberts
+  @param {Bool} $self [false] - Whether or not to include current selector
+  @link https://twitter.com/csswizardry/status/478938530342006784 Original tweet from Harry Roberts
+ */
+
+/* Basic stuff for pseudo elements */
+
+/* Sets width and height */
+
+/* 2. Base */
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+}
+
+a,
+a:hover,
+a:active,
+a:focus,
+button,
+button:hover,
+button:active,
+button:focus {
+	outline: none;
+}
+
+h1,
+h2,
+.mk-h1,
+.mk-h2 {
+	font-family: "Roboto", sans-serif;
+	font-size: 30px;
+	font-weight: 700;
+	line-height: 1.2;
+	letter-spacing: 1.5px;
+}
+
+/* 3. Layouts */
+
+.mk-header {
+	background-color: #363636;
+}
+
+/* 4. Components */
+
