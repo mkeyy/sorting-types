@@ -27,12 +27,12 @@ jQuery("document").ready(function () {
             .attr('class', 'st-chart');
 
         var selector = $('.st-chart');
-        var svgHeight = selector.innerHeight();
+        var svgHeight = selector.innerHeight() - 20;
 
         var dataset = handleGenerateArray(20, svgHeight);
 
         var barPadding = 5;
-        var barWidth = (selector.innerWidth() / dataset.length);
+        var barWidth = ((selector.innerWidth() - 20) / dataset.length);
 
         chart.selectAll('rect')
             .data(dataset)

@@ -4,10 +4,11 @@
   background-color: $st-light-blue;
 
   .st-chart {
-    @include st-size(calc(100% - 40px));
+    @include st-size(calc(100% - 60px));
 
     background-color: $st-white;
     border-radius: 10px;
+    padding: 10px;
     margin: 20px;
 
     .st-chart__bar {
