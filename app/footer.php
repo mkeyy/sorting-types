@@ -1,1 +1,1 @@
-<footer class="mk-footer"></footer>
+<footer class="st-footer"></footer>

@@ -1,8 +1,15 @@
-h1, h2,
-.mk-h1, .mk-h2 {
-  font-family: $mk-ff-base;
-  font-size: 30px;
-  font-weight: 700;
+h1, h2, h3, h4,
+.st-h1, .st-h2, .st-h3, .st-h4 {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: lowercase;
   line-height: 1.2;
-  letter-spacing: 1.5px;
+  margin: 0;
+}
+
+h4, .st-h4 {
+  font-size: 1.5rem;
+  text-transform: uppercase;
 }

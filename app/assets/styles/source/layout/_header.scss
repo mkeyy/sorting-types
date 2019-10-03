@@ -1,3 +1,24 @@
-.mk-header {
-  background-color: $mk-secondary-color;
+.st-header {
+  background-color: $secondary-color;
+
+  .st-logo {
+    @include st-size(calc(15% - 40px), 100%);
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: $primary-color;
+    padding: 10px 20px;
+
+    .st-svg--logo {
+      @include st-size(50px);
+
+      fill: $st-white;
+      margin-right: 10px;
+    }
+
+    .st-h1 {
+      color: $st-white;
+    }
+  }
 }

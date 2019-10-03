@@ -1,0 +1,5 @@
+.st-panel {
+  @include st-size(100%, calc(100% - 70px));
+
+  display: flex;
+}

@@ -19,6 +19,9 @@
 
 html,
 body {
+	font-family: "Roboto", sans-serif;
+	font-size: 10px;
+	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
 	overflow-x: hidden;
@@ -33,24 +36,198 @@ button:hover,
 button:active,
 button:focus {
 	outline: none;
+	text-decoration: none;
+}
+
+.st-list--unstyled,
+.st-sidebar .st-sorts .st-menu {
+	margin: 0;
+	padding: 0;
+	list-style: none;
 }
 
 h1,
 h2,
-.mk-h1,
-.mk-h2 {
-	font-family: "Roboto", sans-serif;
-	font-size: 30px;
-	font-weight: 700;
+h3,
+h4,
+.st-h1,
+.st-h2,
+.st-h3,
+.st-h4 {
+	display: block;
+	font-size: 2.5rem;
+	font-weight: 400;
+	letter-spacing: 1px;
+	text-transform: lowercase;
 	line-height: 1.2;
-	letter-spacing: 1.5px;
+	margin: 0;
+}
+
+h4,
+.st-h4 {
+	font-size: 1.5rem;
+	text-transform: uppercase;
 }
 
 /* 3. Layouts */
 
-.mk-header {
-	background-color: #363636;
+.st-app {
+	width: 100%;
+	height: 100vh;
+}
+
+.st-header {
+	background-color: #273135;
+}
+
+.st-header .st-logo {
+	width: calc(15% - 40px);
+	height: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	background-color: #fa7252;
+	padding: 10px 20px;
+}
+
+.st-header .st-logo .st-svg--logo {
+	width: 50px;
+	height: 50px;
+	fill: #fff;
+	margin-right: 10px;
+}
+
+.st-header .st-logo .st-h1 {
+	color: #fff;
+}
+
+.st-panel {
+	width: 100%;
+	height: calc(100% - 70px);
+	display: flex;
 }
 
 /* 4. Components */
+
+.st-btn {
+	font-size: 1.5rem;
+	font-weight: 400;
+	line-height: 1;
+	outline: none;
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+.st-btn--primary {
+	display: flex;
+	font-size: 1.2rem;
+	font-weight: 600;
+	letter-spacing: 0.25px;
+	text-transform: uppercase;
+	color: #fff;
+	border-radius: 2px;
+	background-color: #fa7252;
+	padding: 15px 30px;
+	transition: background-color 0.3s ease-in-out;
+}
+
+.st-btn--primary:hover {
+	background-color: #ae5a4a;
+}
+
+.st-charts {
+	width: 85%;
+	height: 100%;
+	background-color: #e9f0f5;
+}
+
+.st-charts .st-chart {
+	width: calc(100% - 40px);
+	height: calc(100% - 40px);
+	background-color: #fff;
+	border-radius: 10px;
+	margin: 20px;
+}
+
+.st-charts .st-chart .st-chart__bar {
+	fill: #6dcab7;
+}
+
+.st-sidebar {
+	width: calc(15% - 60px);
+	height: calc(100% - 100px);
+	background-color: #273135;
+	padding: 50px 30px;
+}
+
+.st-sidebar .st-sorts {
+	border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+	padding-bottom: 50px;
+	margin: 10px 0 60px;
+}
+
+.st-sidebar .st-sorts .st-h4 {
+	color: rgba(255, 255, 255, 0.2);
+	margin: 0 0 10px;
+}
+
+.st-sidebar .st-sorts .st-menu {
+	margin: 0 -30px;
+}
+
+.st-sidebar .st-sorts .st-menu .st-menu__item {
+	width: calc(100% - 60px);
+	height: auto;
+	position: relative;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	overflow: hidden;
+	padding: 15px 30px;
+	cursor: pointer;
+}
+
+.st-sidebar .st-sorts .st-menu .st-menu__item .st-svg-inline {
+	width: 24px;
+	height: 24px;
+	z-index: 1;
+	fill: rgba(255, 255, 255, 0.4);
+	margin-right: 10px;
+}
+
+.st-sidebar .st-sorts .st-menu .st-menu__item span {
+	z-index: 1;
+	font-size: 1.5rem;
+	font-weight: 400;
+	letter-spacing: 0.5px;
+	line-height: 1;
+	color: rgba(255, 255, 255, 0.4);
+}
+
+.st-sidebar .st-sorts .st-menu .st-menu__item::before {
+	content: "";
+	display: block;
+	position: absolute;
+	width: calc(100% - 10px);
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 0;
+	transform: scale(0, 1);
+	transform-origin: 0 50%;
+	border-left: 5px solid #fa7252;
+	border-right: 5px solid transparent;
+	background-color: #171d20;
+	transition: transform 0.3s ease-in-out;
+}
+
+.st-sidebar .st-sorts .st-menu .st-menu__item.st-active::before,
+.st-sidebar .st-sorts .st-menu .st-menu__item:hover::before {
+	transform: scale(1, 1);
+}
+
+.st-sidebar .st-btn--generate {
+	margin: 0 auto;
+}
 

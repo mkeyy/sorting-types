@@ -1,0 +1,26 @@
+.st-btn {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.st-btn--primary {
+  display: flex;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.25px;
+  text-transform: uppercase;
+  color: $st-white;
+  border-radius: 2px;
+  background-color: $primary-color;
+  padding: 15px 30px;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover {
+    background-color: $st-orange-two;
+  }
+}

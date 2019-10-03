@@ -1,0 +1,17 @@
+.st-charts {
+  @include st-size(85%, 100%);
+
+  background-color: $st-light-blue;
+
+  .st-chart {
+    @include st-size(calc(100% - 40px));
+
+    background-color: $st-white;
+    border-radius: 10px;
+    margin: 20px;
+
+    .st-chart__bar {
+      fill: $tertiary-color;
+    }
+  }
+}
