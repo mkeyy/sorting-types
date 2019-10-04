@@ -1,6 +1,7 @@
 h1, h2, h3, h4,
 .st-h1, .st-h2, .st-h3, .st-h4 {
   display: block;
+  font-family: $st-ff-header;
   font-size: 2.5rem;
   font-weight: 400;
   letter-spacing: 1px;
@@ -10,6 +11,6 @@ h1, h2, h3, h4,
 }
 
 h4, .st-h4 {
-  font-size: 1.5rem;
+  font-size: 2rem;
   text-transform: uppercase;
 }

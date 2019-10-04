@@ -55,6 +55,7 @@ h4,
 .st-h3,
 .st-h4 {
 	display: block;
+	font-family: "Teko", sans-serif;
 	font-size: 2.5rem;
 	font-weight: 400;
 	letter-spacing: 1px;
@@ -65,7 +66,7 @@ h4,
 
 h4,
 .st-h4 {
-	font-size: 1.5rem;
+	font-size: 2rem;
 	text-transform: uppercase;
 }
 
@@ -77,6 +78,10 @@ h4,
 }
 
 .st-header {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	background-color: #273135;
 }
 
@@ -101,6 +106,34 @@ h4,
 	color: #fff;
 }
 
+.st-header .st-btn--start,
+.st-header .st-btn--stop {
+	width: auto;
+	height: 100%;
+	position: absolute;
+	display: none;
+	top: 0;
+	right: 0;
+	font-size: 22px;
+	font-weight: 700;
+	letter-spacing: 1.5px;
+	border-radius: 0;
+	padding: 15px 50px;
+}
+
+.st-header .st-btn--start.st-active,
+.st-header .st-btn--stop.st-active {
+	display: block;
+}
+
+.st-header .st-btn--start {
+	background-color: #6dcab7;
+}
+
+.st-header .st-btn--start:hover {
+	background-color: #5c9c90;
+}
+
 .st-panel {
 	width: 100%;
 	height: calc(100% - 70px);
@@ -110,7 +143,9 @@ h4,
 /* 4. Components */
 
 .st-btn {
-	font-size: 1.5rem;
+	font-family: "Teko", sans-serif;
+	font-size: 2rem;
+	letter-spacing: 1px;
 	font-weight: 400;
 	line-height: 1;
 	outline: none;
@@ -121,7 +156,7 @@ h4,
 
 .st-btn--primary {
 	display: flex;
-	font-size: 1.2rem;
+	font-size: 1.8rem;
 	font-weight: 600;
 	letter-spacing: 0.25px;
 	text-transform: uppercase;
@@ -142,7 +177,7 @@ h4,
 	background-color: #e9f0f5;
 }
 
-.st-charts .st-chart {
+.st-charts #st-chart {
 	width: calc(100% - 60px);
 	height: calc(100% - 60px);
 	background-color: #fff;
@@ -151,7 +186,7 @@ h4,
 	margin: 20px;
 }
 
-.st-charts .st-chart .st-chart__bar {
+.st-charts #st-chart .st-chart__bar {
 	fill: #6dcab7;
 }
 
@@ -187,6 +222,7 @@ h4,
 	overflow: hidden;
 	padding: 15px 30px;
 	cursor: pointer;
+	transition: background-color 0.3s ease-in-out;
 }
 
 .st-sidebar .st-sorts .st-menu .st-menu__item .st-svg-inline {
@@ -206,26 +242,25 @@ h4,
 	color: rgba(255, 255, 255, 0.4);
 }
 
-.st-sidebar .st-sorts .st-menu .st-menu__item::before {
+.st-sidebar .st-sorts .st-menu .st-menu__item::after {
 	content: "";
-	display: block;
-	position: absolute;
-	width: calc(100% - 10px);
-	height: 100%;
-	top: 0;
-	left: 0;
-	z-index: 0;
-	transform: scale(0, 1);
-	transform-origin: 0 50%;
-	border-left: 5px solid #fa7252;
-	border-right: 5px solid transparent;
-	background-color: #171d20;
-	transition: transform 0.3s ease-in-out;
+	display: inline-flex;
+	position: relative;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background-color: transparent;
+	margin: 0 0 0 auto;
+	transition: background-color 0.3s ease-in-out;
 }
 
-.st-sidebar .st-sorts .st-menu .st-menu__item.st-active::before,
-.st-sidebar .st-sorts .st-menu .st-menu__item:hover::before {
-	transform: scale(1, 1);
+.st-sidebar .st-sorts .st-menu .st-menu__item.st-active,
+.st-sidebar .st-sorts .st-menu .st-menu__item:hover {
+	background-color: #171d20;
+}
+
+.st-sidebar .st-sorts .st-menu .st-menu__item.st-active::after {
+	background-color: #fa7252;
 }
 
 .st-sidebar .st-btn--generate {

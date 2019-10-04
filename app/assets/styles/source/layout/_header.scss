@@ -1,4 +1,8 @@
 .st-header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: $secondary-color;
 
   .st-logo {
@@ -19,6 +23,34 @@
 
     .st-h1 {
       color: $st-white;
+    }
+  }
+
+  .st-btn--start,
+  .st-btn--stop {
+    @include st-size(auto, 100%);
+
+    position: absolute;
+    display: none;
+    top: 0;
+    right: 0;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    border-radius: 0;
+
+    padding: 15px 50px;
+
+    &.st-active {
+      display: block;
+    }
+  }
+
+  .st-btn--start {
+    background-color: $st-green;
+
+    &:hover {
+      background-color: $st-green-two;
     }
   }
 }

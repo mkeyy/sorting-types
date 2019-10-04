@@ -9,19 +9,19 @@
         <div class="st-sorts">
             <span class="st-h4">Types</span>
             <ul class="st-menu">
-                <li class="st-menu__item st-active">
+                <li class="st-menu__item st-active" data-sorting-types="bubble">
                     <?= assetSvg('ic-bubble') ?>
                     <span><?= _('Bubble Sort') ?></span>
                 </li>
-                <li class="st-menu__item">
+                <li class="st-menu__item" data-sorting-types="selection">
                     <?= assetSvg('ic-select') ?>
                     <span><?= _('Selection Sort') ?></span>
                 </li>
-                <li class="st-menu__item">
+                <li class="st-menu__item" data-sorting-types="merge">
                     <?= assetSvg('ic-merge') ?>
                     <span><?= _('Merge Sort') ?></span>
                 </li>
-                <li class="st-menu__item">
+                <li class="st-menu__item" data-sorting-types="quick">
                     <?= assetSvg('ic-quick') ?>
                     <span><?= _('Quick Sort') ?></span>
                 </li>
@@ -30,7 +30,7 @@
 
         <button class="st-btn st-btn--primary st-btn--generate st-js" data-sorting-types="generate"><?= _('Generate New Dataset') ?></button>
     </aside>
-    <div class="st-charts"></div>
+    <div class="st-charts"><canvas id="st-chart" width="1000px" height="500px"></canvas></div>
 </main>
 
 <?php include('footer.php'); ?>

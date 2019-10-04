@@ -3,7 +3,7 @@
 
   background-color: $st-light-blue;
 
-  .st-chart {
+  #st-chart {
     @include st-size(calc(100% - 60px));
 
     background-color: $st-white;
