@@ -15,7 +15,7 @@
                 </li>
                 <li class="st-menu__item" data-sorting-types="selection">
                     <?= assetSvg('ic-select') ?>
-                    <span><?= _('Selection Sort') ?></span>
+                    <span><?= _('Select Sort') ?></span>
                 </li>
                 <li class="st-menu__item" data-sorting-types="merge">
                     <?= assetSvg('ic-merge') ?>

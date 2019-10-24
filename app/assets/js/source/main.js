@@ -1,26 +1,29 @@
-var app = {
-    init: function () {
-        var chartWrapper = $('.st-charts'),
-            chart = $('#st-chart'),
-            btnStart = $('.st-js[data-sorting-types="start"]'),
-            btnStop = $('.st-js[data-sorting-types="stop"]'),
-            width = chartWrapper.innerWidth() - 40,
-            height = chartWrapper.innerHeight() - 40;
+jQuery("document").ready(function () {
+    var chartWrapper = $('.st-charts'),
+        chart = $('#st-chart'),
+        btnStart = $('.st-js[data-sorting-types="start"]'),
+        btnStop = $('.st-js[data-sorting-types="stop"]'),
+        width = chartWrapper.innerWidth() - 40,
+        height = chartWrapper.innerHeight() - 40;
 
-        var ctx = chart[0].getContext('2d');
+    var ctx = chart[0].getContext('2d');
+    var dataset = handleGenerateDataset(50, height);
+
+    init();
+
+    function init() {
         ctx.canvas.width = width;
         ctx.canvas.height = height;
 
-        var dataset = app.handleGenerateDataset(150, height);
-
-        app.handleDrawChart(ctx, dataset, width, height);
+        handleDrawChart();
+        handleGenerateNewDataset();
 
         btnStart.on('click', function () {
-            app.bubbleSort(ctx, dataset, width, height);
+            bubbleSort();
         })
-    },
+    }
 
-    handleSortSelect: function () {
+    function handleSortSelect() {
         var item = $('.st-menu__item'),
             sortType = $('.st-menu__item.st-active').data('sorting-types');
 
@@ -30,11 +33,10 @@ var app = {
             sortType = $(this).data('sorting-types');
         });
 
-        console.log(sortType);
         return sortType;
-    },
+    }
 
-    handleGenerateDataset: function (size, range) {
+    function handleGenerateDataset(size, range) {
         var arr = [];
 
         for (var i = 0; i < size; i++) {
@@ -42,53 +44,62 @@ var app = {
         }
 
         return arr;
-    },
+    }
 
-    handleGenerateNewDataset: function () {
+    function handleGenerateNewDataset() {
         $('.st-js[data-sorting-types="generate"]').on('click', function () {
-            app.handleChartDraw();
+            dataset = handleGenerateDataset(50, height);
+            handleDrawChart();
         })
-    },
+    }
 
-    handleDrawChart: function (ctx, dataset, width, height) {
+    function handleDrawChart(id) {
         ctx.scale(1, 1);
 
         barPadding = 1;
-        barWidth = Math.floor(width / dataset.length);
+        barWidth = (width - (dataset.length * barPadding)) / dataset.length;
 
         ctx.clearRect(0, 0, width, height);
         $.each(dataset, function (index, value) {
-            app.drawBar(ctx, index * (barWidth + barPadding), height - value, barWidth - barPadding, value, '#6dcab7');
-        });
-
-        requestAnimationFrame(app.handleDrawChart)
-    },
-
-    drawBar: function (ctx, x, y, width, height, color) {
-        ctx.save();
-        ctx.fillStyle = color;
-        ctx.fillRect(x, y, width, height);
-        ctx.restore();
-    },
-
-    bubbleSort: function (ctx, dataset, width, height) {
-        var n = dataset.length;
-
-        do {
-            for (var i = 0; i < n - 1; i++) {
-                if (dataset[i] > dataset[i + 1]) {
-                    var x = dataset[i];
-                    dataset[i] = dataset[i + 1];
-                    dataset[i + 1] = x;
-
-                    app.handleDrawChart(ctx, dataset, width, height);
-                }
+            ctx.save();
+            if (typeof id != 'undefined' && id === index) {
+                ctx.fillStyle = '#fa7252';
+            } else {
+                ctx.fillStyle = '#6dcab7';
             }
-            n--;
-        } while (n > 1);
+            ctx.fillRect(index * (barWidth + barPadding), height - value, barWidth, value);
+            ctx.restore();
+        });
     }
-};
 
-jQuery("document").ready(function () {
-    app.init();
+    function bubbleSort() {
+        var n = dataset.length,
+            swaps = 0;
+
+        var bubbleSortLoop = function (i) {
+            if (dataset[i] > dataset[i + 1]) {
+                var temp = dataset[i];
+                dataset[i] = dataset[i + 1];
+                dataset[i + 1] = temp;
+                swaps++;
+            }
+
+            handleDrawChart(i + 1);
+
+            if (i < n) {
+                setTimeout(function () {
+                    bubbleSortLoop(i + 1)
+                }, 5);
+            } else if (swaps !== 0) {
+                swaps = 0;
+                setTimeout(function () {
+                    bubbleSortLoop(0)
+                }, 10);
+            } else {
+                return 0;
+            }
+        };
+
+        bubbleSortLoop(0);
+    }
 });
