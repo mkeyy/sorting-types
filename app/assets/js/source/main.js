@@ -8,6 +8,7 @@ jQuery("document").ready(function () {
 
     var ctx = chart[0].getContext('2d');
     var dataset = handleGenerateDataset(50, height);
+    var sortType = $('.st-menu__item.st-active').data('sorting-types');
 
     init();
 
@@ -17,23 +18,31 @@ jQuery("document").ready(function () {
 
         handleDrawChart();
         handleGenerateNewDataset();
+        handleSortSelect();
 
         btnStart.on('click', function () {
-            bubbleSort();
+            switch (sortType) {
+                case 'select':
+                    selectSort();
+                    break;
+                case 'heap':
+                    heapSort();
+                    break;
+                case 'bubble':
+                    bubbleSort();
+                    break;
+            }
         })
     }
 
     function handleSortSelect() {
-        var item = $('.st-menu__item'),
-            sortType = $('.st-menu__item.st-active').data('sorting-types');
+        var item = $('.st-menu__item');
 
         item.on('click', function () {
             item.removeClass('st-active');
             $(this).addClass('st-active');
             sortType = $(this).data('sorting-types');
         });
-
-        return sortType;
     }
 
     function handleGenerateDataset(size, range) {
@@ -53,7 +62,7 @@ jQuery("document").ready(function () {
         })
     }
 
-    function handleDrawChart(id) {
+    function handleDrawChart(firstID, secondID) {
         ctx.scale(1, 1);
 
         barPadding = 1;
@@ -62,7 +71,7 @@ jQuery("document").ready(function () {
         ctx.clearRect(0, 0, width, height);
         $.each(dataset, function (index, value) {
             ctx.save();
-            if (typeof id != 'undefined' && id === index) {
+            if ((typeof firstID !== 'undefined' && firstID === index) || (typeof secondID !== 'undefined' && secondID === index)) {
                 ctx.fillStyle = '#fa7252';
             } else {
                 ctx.fillStyle = '#6dcab7';
@@ -70,6 +79,81 @@ jQuery("document").ready(function () {
             ctx.fillRect(index * (barWidth + barPadding), height - value, barWidth, value);
             ctx.restore();
         });
+    }
+
+    function selectSort() {
+        var n = dataset.length;
+
+        function maxIndex(num) {
+            var maxIndex = 0;
+            for (var i = 0; i <= num; i++) {
+                if (dataset[i] > dataset[maxIndex]) {
+                    maxIndex = i;
+                }
+            }
+            return maxIndex;
+        }
+
+        var selectSortLoop = function (i) {
+            var max = maxIndex(i);
+            handleDrawChart(i, max);
+
+            var temp = dataset[i];
+            dataset[i] = dataset[max];
+            dataset[max] = temp;
+
+            i = i - 1;
+
+            if (i >= 0) {
+                setTimeout(function () {
+                    selectSortLoop(i)
+                }, 100);
+            } else {
+                handleDrawChart();
+                return 0;
+            }
+        };
+
+        selectSortLoop(n - 1);
+    }
+
+    function buildHeap(length, i) {
+        var largest = i,
+            left = i * 2 + 1,
+            right = left + 1;
+
+        if (left < length && dataset[left] > dataset[largest]) {
+            largest = left;
+        }
+
+        if (right < length && dataset[right] > dataset[largest]) {
+            largest = right;
+        }
+
+        if (largest !== i) {
+            [dataset[i], dataset[largest]] = [dataset[largest], dataset[i]];
+
+            buildHeap(length, largest);
+        }
+    }
+
+    function heapSort() {
+        var length = dataset.length,
+            i = Math.floor(length / 2 - 1),
+            k = length - 1;
+
+        while (i >= 0) {
+            buildHeap(length, i);
+            i--;
+        }
+
+        while (k >= 0) {
+            [dataset[0].dataset[k]] = [dataset[k], dataset[0]];
+            buildHeap(k, 0);
+            k--;
+        }
+
+        console.log(dataset);
     }
 
     function bubbleSort() {

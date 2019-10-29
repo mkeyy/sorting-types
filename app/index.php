@@ -9,21 +9,21 @@
         <div class="st-sorts">
             <span class="st-h4">Types</span>
             <ul class="st-menu">
-                <li class="st-menu__item st-active" data-sorting-types="bubble">
-                    <?= assetSvg('ic-bubble') ?>
-                    <span><?= _('Bubble Sort') ?></span>
-                </li>
-                <li class="st-menu__item" data-sorting-types="selection">
+                <li class="st-menu__item st-active" data-sorting-types="select">
                     <?= assetSvg('ic-select') ?>
                     <span><?= _('Select Sort') ?></span>
                 </li>
-                <li class="st-menu__item" data-sorting-types="merge">
-                    <?= assetSvg('ic-merge') ?>
-                    <span><?= _('Merge Sort') ?></span>
+                <li class="st-menu__item" data-sorting-types="heap">
+                    <?= assetSvg('ic-heap') ?>
+                    <span><?= _('Heap Sort') ?></span>
                 </li>
                 <li class="st-menu__item" data-sorting-types="quick">
                     <?= assetSvg('ic-quick') ?>
                     <span><?= _('Quick Sort') ?></span>
+                </li>
+                <li class="st-menu__item" data-sorting-types="bubble">
+                    <?= assetSvg('ic-bubble') ?>
+                    <span><?= _('Bubble Sort') ?></span>
                 </li>
             </ul>
         </div>
